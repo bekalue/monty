@@ -34,13 +34,15 @@ char **file_reader(char *file_path)
 			str = _strcat(str, buffer);
 		}
 		close(fd);
-		return (split_str(str, '\n'));
+		free(buffer);
+		return (str_split(str, '\n'));
 	}
 	else
 	{
 		if (fd >= 0)
 			close(fd);
 		fprintf(stderr, "Error: Can't open file %s\n", path_name);
+		free(buffer);
 		exit(EXIT_FAILURE);
 	}
 	return (NULL);
