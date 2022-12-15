@@ -1,6 +1,21 @@
 #include "monty.h"
 
 /**
+ * str_len - Computes the length of the string.
+ * @str: the string.
+ *
+ * Return: the length of the string.
+ */
+int str_len(char *str)
+{
+	int len = 0;
+
+	while (str[len])
+		len++;
+	return (len);
+}
+
+/**
  * str_split - Splits a string into smaller strings at a given character.
  * @str: the string to split.
  * @c: the character at which split is to be performed.
@@ -30,6 +45,7 @@ char **str_split(char *str, char c)
 		}
 	}
 }
+
 /**
  * _strcat - Concatinates two strings.
  * @left: the left string.
