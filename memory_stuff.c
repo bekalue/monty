@@ -10,6 +10,44 @@
  */
 void *_realloc(void *prev, size_t old_size, size_t new_size)
 {
+	void *new = NULL;
+	int fill_size = old_size < new_size ? old_size : new_size;
+
+	if (old_size == new_size)
+		return (prev);
+	if (ptr)
+	{
+		if (new_size == 0)
+		{
+			free(prev);
+			return (NULL);
+		}
+		new = malloc(new_size);
+		if (new)
+		{
+			for (i = 0; i < fill_size; i++)
+				(char *)new[i] = (char *)prev[i];
+			free(prev);
+			return (new);
+		}
+		else
+		{
+			free(prev);
+			fprintf(stderr, "Error: malloc failed\n");
+			exit(EXIT_FAILURE);
+		}
+	}
+	else
+	{
+		new = malloc(sizeof(char) * new_size);
+		if(!new)
+		{
+			fprintf(stderr, "Error: malloc failed\n");
+			exit(EXIT_FAILURE);
+		}
+		return (new);
+	}
+}
 
 /**
  * _memset - fills a section of a buffer with a constatnt byte c.
