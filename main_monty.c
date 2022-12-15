@@ -8,6 +8,32 @@
  */
 int monty_interpreter(int fd)
 {
+	char *buf, *str;
+	struct stat file_status;
+	bool stop = FALSE;
+	size_t read = 0;
+
+	buf = malloc(sizeof(char) * BUFSIZE);
+	if (!buf)
+	{
+		fprintf(stderr, "Error: malloc failed\n");
+		return (EXIT_FAILURE);
+	}
+
+	fstat(fd, &file_status);
+	if ((fd >= 0) && S_ISREG(file_status.st_mode))
+	{
+		while (!stop)
+		{
+			_memset(buf, BUFSIZE - 1, '\0');
+			read = read(fd, buf, BUFSIZE - 1);
+			if ((read <= 0) || (read < BUFSIZE - 1))
+				stop = TRUE;
+			buf[BUFSIZE] = '\0';
+			str = _strcat(str, buf);
+		}
+	}
+}
 
 
 /**
