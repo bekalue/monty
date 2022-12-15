@@ -20,7 +20,8 @@ char **file_reader(char *file_path)
 		exit(EXIT_FAILURE);
 	}
 
-	fstat(fd, &file_status);
+	fd = open(file_path, O_RDONLY);
+	stat(file_path, &file_status);
 	if ((fd >= 0) && S_ISREG(file_status.st_mode))
 	{
 		while (!stop_reading)
@@ -39,7 +40,11 @@ char **file_reader(char *file_path)
 	{
 		if (fd >= 0)
 			close(fd);
-		fprintf(stderr, "Error: Can't open file %s\n", 
+		fprintf(stderr, "Error: Can't open file %s\n", path_name);
+		exit(EXIT_FAILURE);
+	}
+	return (NULL);
+}
 /**
  * monty_interpreter - Primary function to Execute a monty bytecode script.
  * @file_path: a file name.
