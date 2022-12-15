@@ -57,7 +57,7 @@ int main(int argc, char **argv)
 			fprintf(stderr, "Error: Can't open file %s\n", argv[1]);
 			exit(EXIT_FAILURE);
 		}
-		exit_status = monty_interpret(fd);
+		exit_status = monty_interpreter(fd);
 		clean_up(fd);
 	}
 	else
@@ -66,4 +66,4 @@ int main(int argc, char **argv)
 		exit(EXIT_FAILURE);
 	}
 	exit(exit_status);
-}`
+}
