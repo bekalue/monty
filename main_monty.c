@@ -69,6 +69,7 @@ int monty_interpreter(char *file_path)
 int main(int argc, char **argv)
 {
 	int exit_status = EXIT_SUCCESS;
+
 	if (argc != 2)
 	{
 		fprintf(stderr, "USAGE: monty file\n");
@@ -77,6 +78,6 @@ int main(int argc, char **argv)
 
 	exit_status = monty_interpreter(argv[1]);
 
-	exit(EXIT_SUCCESS);
+	exit(exit_status);
 
 }

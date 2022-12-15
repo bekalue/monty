@@ -33,8 +33,8 @@ char **str_split(char *str, char c)
 	{
 		if (str[i] == c || (str[i] != c && str[i + 1] == '\0'))
 		{
-			sstr = _realloc(sstr, sizeof(void *) * n, sizeof(void *) *(n + 1));
-			s = str[i] == c ? i - j: i - j + 1;
+			sstr = _realloc(sstr, sizeof(void *) * n, sizeof(void *) * (n + 1));
+			s = str[i] == c ? i - j : i - j + 1;
 			sstr[n] = NULL;
 			sstr[n] = _realloc(sstr[n], 0, sizeof(char) * (s + 1));
 			for (o = 0; o < s; o++)
@@ -61,7 +61,7 @@ char *_strcat(char *left, char *right)
 	int left_length = str_len(left);
 	int right_length = str_len(right);
 
-	str = _realloc(str, 0,sizeof(char) * (left_length + right_length + 1));
+	str = _realloc(str, 0, sizeof(char) * (left_length + right_length + 1));
 	if (!str)
 	{
 		fprintf(stderr, "Error: malloc failed\n");

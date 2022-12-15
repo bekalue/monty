@@ -40,7 +40,7 @@ void *_realloc(void *prev, size_t old_size, size_t new_size)
 	else
 	{
 		new = malloc(sizeof(char) * new_size);
-		if(!new)
+		if (!new)
 		{
 			fprintf(stderr, "Error: malloc failed\n");
 			exit(EXIT_FAILURE);
