@@ -1,4 +1,25 @@
 #include "monty.h"
+
+/**
+ * str_split - Splits a string into smaller strings at a given character.
+ * @str: the string to split.
+ * @c: the character at which split is to be performed.
+ *
+ * Return: a pointer to array of strings.
+ */
+char **str_split(char *str, char c)
+{
+	char **sstr = NULL;
+	int i, j = 0, n = 0, s = 0;
+
+	if (!str)
+		return (sstr);
+	for (i = 0; str[i]; i++)
+	{
+		if (str[i] == c || (str[i] != c && str[i + 1] == '\0'))
+		{
+			sstr = _realloc(sstr, sizeof(void *) * n, sizeof(void *) *(n + 1));
+			s = str[i] == c ? i - j: i - j + 1;
 /**
  * _strcat - Concatinates two strings.
  * @left: the left string.
