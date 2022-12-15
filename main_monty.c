@@ -1,12 +1,17 @@
 #include "monty.h"
 
+static stack_t *stack;
+static int Line_Count;
+static int Current_Line;
+static char **Lines;
+
 /**
  * file_reader - Reads the lines in a file from the fd.
  * @file_path: file discriptor for the opened file.
  *
  * Return: an array of strings representing each line of the file.
  */
-char **file_reader(char *file_path)
+char **file_reader(char *file_path, int *Line_Count)
 {
 	char *buffer, *str;
 	bool stop_reading = FALSE;
@@ -47,17 +52,37 @@ char **file_reader(char *file_path)
 	}
 	return (NULL);
 }
+
 /**
- * monty_interpreter - Primary function to Execute a monty bytecode script.
- * @file_path: a file name.
- *
- * Return: (EXIT_SUCCESS) on success, otherwise (EXIT_FAILURE) on failure.
+ * clean_program - cleans dynamically allocated memory in a program.
  */
-int monty_interpreter(char *file_path)
+void clean_program(void)
 {
+	int b;
+	stack_t *node = stack, *tmp = NULL;
+
+	if (Lines)
+	{
+		for (b = 0; b < Lines_Count; b++)
+		{
+			if (Lines[b])
+				free(Lines[b]);
+		}
+		free(Lines);
+	}
+	if (node)
+	{
+		while (node && node->prev)
+			node = node->prev;
+		while (node)
+		{
+			tmp = node->next;
+			free(node);
+			node = tmp;
+		}
+
+	}
 }
-
-
 /**
  * main - Entry Point for Monty Bytecode Interpreter.
  *
@@ -68,16 +93,20 @@ int monty_interpreter(char *file_path)
  */
 int main(int argc, char **argv)
 {
-	int exit_status = EXIT_SUCCESS;
-
-	if (argc != 2)
+	if (argc == 2)
+	{
+		Lines = file_reader(argv[1], &Line_Count);
+		while (Current_Line < Lines_Count)
+		{
+			interpret(Lines[Current_Line], Current_Line + 1, &stack);
+			Current_Line++;
+		}
+	}
+	else
 	{
 		fprintf(stderr, "USAGE: monty file\n");
 		exit(EXIT_FAILURE);
 	}
-
-	exit_status = monty_interpreter(argv[1]);
-
-	exit(exit_status);
-
+	clean_program();
+	exit(EXIT_SUCCESS);
 }
