@@ -10,7 +10,7 @@
 char **str_split(char *str, char c)
 {
 	char **sstr = NULL;
-	int i, j = 0, n = 0, s = 0;
+	int i, o, j = 0, n = 0, s = 0;
 
 	if (!str)
 		return (sstr);
@@ -20,6 +20,16 @@ char **str_split(char *str, char c)
 		{
 			sstr = _realloc(sstr, sizeof(void *) * n, sizeof(void *) *(n + 1));
 			s = str[i] == c ? i - j: i - j + 1;
+			sstr[n] = NULL;
+			sstr[n] = _realloc(sstr[n], 0, sizeof(char) * (s + 1));
+			for (o = 0; o < s; o++)
+				sstr[n][o] = str[j + o];
+			sstr[n][o] = '\0';
+			j = i + 1;
+			n++;
+		}
+	}
+}
 /**
  * _strcat - Concatinates two strings.
  * @left: the left string.
