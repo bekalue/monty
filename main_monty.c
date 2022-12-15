@@ -1,38 +1,53 @@
 #include "monty.h"
 
 /**
- * monty_interpreter - Primary function to Execute a monty bytecode script.
- * @fd: a file descriptor to be executed.
+ * file_reader - Reads the lines in a file from the fd.
+ * @file_path: file discriptor for the opened file.
  *
- * Return: (EXIT_SUCCESS) on success, otherwise (EXIT_FAILURE) on failure.
+ * Return: an array of strings representing each line of the file.
  */
-int monty_interpreter(int fd)
+char **file_reader(char *file_path)
 {
-	char *buf, *str;
+	char *buffer, *str;
+	bool stop_reading = FALSE;
 	struct stat file_status;
-	bool stop = FALSE;
 	size_t read = 0;
 
-	buf = malloc(sizeof(char) * BUFSIZE);
-	if (!buf)
+	buffer = malloc(sizeof(char) * BUFSIZE);
+	if (!buffer)
 	{
 		fprintf(stderr, "Error: malloc failed\n");
-		return (EXIT_FAILURE);
+		exit(EXIT_FAILURE);
 	}
 
 	fstat(fd, &file_status);
 	if ((fd >= 0) && S_ISREG(file_status.st_mode))
 	{
-		while (!stop)
+		while (!stop_reading)
 		{
-			_memset(buf, BUFSIZE - 1, '\0');
-			read = read(fd, buf, BUFSIZE - 1);
-			if ((read <= 0) || (read < BUFSIZE - 1))
-				stop = TRUE;
-			buf[BUFSIZE] = '\0';
-			str = _strcat(str, buf);
+			_memset(buffer, BUFSIZE - 1, '\0');
+			read = read(fd, (void *)buffer, BUFSIZE - 1);
+			if ((n <= 0) || (n < 1024 - 1))
+				stop_reading = TRUE;
+			buffer[read] = '\0';
+			str = _strcat(str, buffer);
 		}
+		close(fd);
+		return (split_str(str, '\n'));
 	}
+	else
+	{
+		if (fd >= 0)
+			close(fd);
+		fprintf(stderr, "Error: Can't open file %s\n", 
+/**
+ * monty_interpreter - Primary function to Execute a monty bytecode script.
+ * @file_path: a file name.
+ *
+ * Return: (EXIT_SUCCESS) on success, otherwise (EXIT_FAILURE) on failure.
+ */
+int monty_interpreter(char *file_path)
+{
 }
 
 
@@ -46,24 +61,15 @@ int monty_interpreter(int fd)
  */
 int main(int argc, char **argv)
 {
-	int fd;
-	int exit_status;
-
-
-	if(argc == 2)
-	{
-		if (fd = open(argv[1], O_RDONLY) == -1)
-		{
-			fprintf(stderr, "Error: Can't open file %s\n", argv[1]);
-			exit(EXIT_FAILURE);
-		}
-		exit_status = monty_interpreter(fd);
-		clean_up(fd);
-	}
-	else
+	int exit_status = EXIT_SUCCESS;
+	if (argc != 2)
 	{
 		fprintf(stderr, "USAGE: monty file\n");
 		exit(EXIT_FAILURE);
 	}
-	exit(exit_status);
+
+	exit_status = monty_interpreter(argv[1]);
+
+	exit(EXIT_SUCCESS);
+
 }
