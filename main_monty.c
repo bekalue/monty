@@ -14,10 +14,10 @@ static char **Lines;
  */
 char **file_reader(char *file_path, int *Line_Count)
 {
-	char *buffer, *str;
+	char *buffer, *str = NULL;
 	bool stop_reading = FALSE;
 	struct stat file_status;
-	size_t read = 0;
+	size_t read = 0, fd;
 
 	buffer = malloc(sizeof(char) * BUFSIZE);
 	if (!buffer)
@@ -34,14 +34,14 @@ char **file_reader(char *file_path, int *Line_Count)
 		{
 			_memset(buffer, BUFSIZE - 1, '\0');
 			read = read(fd, (void *)buffer, BUFSIZE - 1);
-			if ((n <= 0) || (n < 1024 - 1))
+			if ((read <= 0) || (read < BUFSIZE - 1))
 				stop_reading = TRUE;
 			buffer[read] = '\0';
 			str = _strcat(str, buffer);
 		}
 		close(fd);
 		free(buffer);
-		return (str_split(str, '\n'));
+		return (str_split(str, '\n', Line_Count));
 	}
 	else
 	{
@@ -49,6 +49,7 @@ char **file_reader(char *file_path, int *Line_Count)
 			close(fd);
 		fprintf(stderr, "Error: Can't open file %s\n", path_name);
 		free(buffer);
+		clean_program();
 		exit(EXIT_FAILURE);
 	}
 	return (NULL);
