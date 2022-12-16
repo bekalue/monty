@@ -10,6 +10,17 @@
 
 > The interpreter can be run as either a stack (LIFO) or queue (FIFO). Mode can be switched mid-script. The interpreter can handle a variety of Monty opcodes, including printing, mathematical operations, and more - all handled opcodes are listed below.
 
+## Getting started
+```
+git clone https://github.com/bekalue/monty
+cd monty
+gcc -Wall -Werror -Wextra -pedantic -std=gnu89 *.c -o monty
+```
+
+## Usage
+
+`./monty <bytecode file>`
+
 ### Supported Opcodes in Bytecode File
 
 | Name | Description |
