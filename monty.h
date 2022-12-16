@@ -92,7 +92,7 @@ void opcode_rotr(stack_t **stack, unsigned int line_number);
 void opcode_stack(stack_t **stack, unsigned int line_number);
 void opcode_queue(stack_t **stack, unsigned int line_number);
 
-/* Reading helpers from the file - main_monty.c */
+/* Reading helpers from the file - file_reader.c */
 
 char **file_reader(char *path, int *lines_count);
 char *read_command(char *str, int *offset);
