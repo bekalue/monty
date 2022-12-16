@@ -62,11 +62,11 @@ typedef struct instruction_s
 	void (*f)(stack_t **stack, unsigned int line_number);
 } instruction_t;
 
-/* monty.c functions */
+/* main_monty.c functions */
 
 char *get_data_mode(void);
 char **get_lines(void);
-void clean_up_program(void);
+void clean_program(void);
 
 /* Opcode handlers */
 
