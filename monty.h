@@ -118,8 +118,8 @@ void _memset(char *str, int n, char c);
 /* String utilities - string_stuff.c*/
 
 int str_len(const char *str);
-char *_strcat(char *left, char *right);
-char **str_split(char *str, char c, int *len_out);
+char *_strcat(char *left, char *right, char can_free);
+char **str_split(char *str, char c, int *len_out, char can_free);
 
 /* Data validators - validator_functions.c*/
 

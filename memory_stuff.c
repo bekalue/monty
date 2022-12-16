@@ -10,9 +10,9 @@
  */
 void *_realloc(void *prev, unsigned int old_size, unsigned int new_size)
 {
-	int i;
+	unsigned int i;
 	void *new = NULL;
-	int fill_size = old_size < new_size ? old_size : new_size;
+	unsigned int fill_size = old_size < new_size ? old_size : new_size;
 
 	if (old_size == new_size)
 		return (prev);
@@ -31,12 +31,9 @@ void *_realloc(void *prev, unsigned int old_size, unsigned int new_size)
 			free(prev);
 			return (new);
 		}
-		else
-		{
-			free(prev);
-			fprintf(stderr, "Error: malloc failed\n");
-			exit(EXIT_FAILURE);
-		}
+		free(prev);
+		fprintf(stderr, "Error: malloc failed\n");
+		exit(EXIT_FAILURE);
 	}
 	else
 	{

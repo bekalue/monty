@@ -89,11 +89,9 @@ void enqueue(stack_t **stack, int n)
 		}
 	}
 }
-#include "monty.h"
-
 /**
- * get_top_element - Retrieves the item at the top of the stack based \
- * on the data format (stack or queue)
+ * get_top_element - Retrieves the item at the top of the stack based
+ *			on the data format (stack or queue)
  * @stack: The pointer to the stack of values
  *
  * Return: The node at the top, otherwise NULL
@@ -116,8 +114,8 @@ stack_t *get_top_element(stack_t **stack)
 }
 
 /**
- * get_bottom_element - Retrieves the item at the bottom of the stack based \
- * on the data format (stack or queue)
+ * get_bottom_element - Retrieves the item at the bottom of the stack based
+ *				on the data format (stack or queue)
  * @stack: The pointer to the stack of values
  *
  * Return: The node at the bottom, otherwise NULL

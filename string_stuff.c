@@ -19,10 +19,11 @@ int str_len(const char *str)
  * str_split - Splits a string into smaller strings at a given character.
  * @str: the string to split.
  * @c: the character at which split is to be performed.
- * @len_out: The pointer which would contain the number of smaller strings
+ * @len_out: The pointer which would contain the number of smaller strings.
+ * @can_free: Specifies which free-able parameters can be freed.
  * Return: a pointer to array of strings.
  */
-char **str_split(char *str, char c, int *len_out)
+char **str_split(char *str, char c, int *len_out, char can_free)
 {
 	char **sstr = NULL;
 	int i, o, j = 0, n = 0, s = 0;
@@ -46,6 +47,8 @@ char **str_split(char *str, char c, int *len_out)
 	}
 	if (len_out != NULL)
 		*len_out = n;
+	if (can_free & TRUE)
+		free(str);
 	return (sstr);
 }
 
@@ -53,11 +56,12 @@ char **str_split(char *str, char c, int *len_out)
  * _strcat - Concatinates two strings.
  * @left: the left string.
  * @right: the rigth string.
+ * @can_free: Specifies which free-able parameters can be freed.
  *
  * Return: a pointer to concatinated string.
  *
  */
-char *_strcat(char *left, char *right)
+char *_strcat(char *left, char *right, char can_free)
 {
 	int i;
 	char *str = NULL;
@@ -76,6 +80,10 @@ char *_strcat(char *left, char *right)
 	for (i = 0; right && right[i] != '\0'; i++)
 		str[left_length + i] = right[i];
 	str[left_length + i] = '\0';
+	if (((can_free >> 1) & TRUE) && (left != NULL))
+		free(left);
+	if ((can_free & TRUE) && (right != NULL))
+		free(right);
 
 	return (str);
 }
