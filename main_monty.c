@@ -85,6 +85,26 @@ char *read_command(char *str, int *offset)
 
 	return (command);
 }
+/**
+ * get_data_mode - Returns a pointer to the interpreter's mode flag
+ *
+ * Return: A pointer to the interpreter's mode flag
+ */
+char *get_data_mode(void)
+{
+	return (&Data_Format);
+}
+
+/**
+ * get_lines - Retrieves the lines of the current file
+ *
+ * Return: The lines of the current file
+ */
+char **get_lines(void)
+{
+	return (Lines);
+}
+
 
 /**
  * clean_program - cleans dynamically allocated memory in a program.
