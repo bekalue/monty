@@ -29,3 +29,24 @@
 | rotr | Rotates the stack to the bottom |
 | stack | Sets the format of the data to a stack (LIFO). This is the default behavior of the program |
 | queue| Sets the format of the data to a queue (FIFO) |
+
+### Commenting
+
+Comments start with the `#` character after all the leading whitespaces have been skipped.
+
+### Examples
+
+```m
+push 1
+push 2
+push 10
+push 3
+sub
+pall
+```
+
+```m
+push 56
+push 72
+pchar
+```
