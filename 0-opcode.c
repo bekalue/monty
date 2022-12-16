@@ -33,7 +33,8 @@ void opcode_push(stack_t **stack, size_t line_number)
 		if (arg != NULL)
 			free(arg);
 		fprintf(stderr, "L%d: usage: push integer\n", line_number);
-		exit_program(EXIT_FAILURE);
+		clear_program();
+		exit(EXIT_FAILURE);
 	}
 }
 /**
@@ -50,7 +51,8 @@ void opcode_pop(stack_t **stack, size_t line_number)
 	else
 	{
 		fprintf(stderr, "L%d: can't pop an empty stack\n", line_number);
-		exit_program(EXIT_FAILURE);
+		clear_program();
+		exit(EXIT_FAILURE);
 	}
 }
 /**
@@ -97,7 +99,8 @@ void opcode_pint(stack_t **stack, size_t line_number)
 	if (error)
 	{
 		fprintf(stderr, "L%d: can't pint, stack empty\n", line_number);
-		exit_program(EXIT_FAILURE);
+		clear_program();
+		exit(EXIT_FAILURE);
 	}
 }
 /**
@@ -126,6 +129,7 @@ void opcode_swap(stack_t **stack, size_t line_number)
 	if (error)
 	{
 		fprintf(stderr, "L%d: can't swap, stack too short\n", line_number);
-		exit_program(EXIT_FAILURE);
+		clear_program();
+		exit(EXIT_FAILURE);
 	}
 }
