@@ -1,10 +1,10 @@
-# Brainf\*ck
+# Brainf\*ck🧠
 > To get started with brainf\*ck on ubuntu 20.04, we can install the interpreter `bf` using `sudo apt-get install bf`
 
 ## Usage
 `bf <file>` or `./file`
 
-# Tasks Done
+# Tasks Done✅
 
 + [x] 16\. Brainf\*ck <br/>_**[1000-school.bf](1000-school.bf)**_ contains a Brainf\*ck script that prints `School`, followed by a new line.
 + [x] 17\. Add two digits <br/>_**[1001-add.bf](1001-add.bf)**_ adds two digits given by the user. Reads the two digits from stdin, add them, and print the result which will be one digit-long (<10)
