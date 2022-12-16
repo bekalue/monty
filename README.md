@@ -1,7 +1,9 @@
 # 0x19. C - Stacks, Queues - LIFO, FIFO
 
 ![Betty style](https://img.shields.io/badge/betty-style%20guide-purple?style=round-square)
-> This projects covers concepts of Stacks, Queues, LIFO, FIFO implementation based on monty bytecode interpreter
+> This projects covers concepts of Stacks, Queues, LIFO, FIFO implementation based on Monty 0.98.
+
+> Monty 0.98 is a scripting language that is first compiled into Monty byte codes (Just like Python). It relies on a unique stack, with specific instructions to manipulate it. The goal of this project is to create an interpreter for Monty ByteCodes files.
 
 ## Monty Interpreter
 > This interpreter was built in the C language. It reads Monty bytecode files of any extension (preferably .m although it doesn't matter), and interprets the opcodes contained. There is not more than one instruction per line. There can be any number of spaces before or after the opcode and its argument. Instruction starting with `#` will be assumed as a comment. Sample bytecodes can be found [here](https://github.com/bekalue/monty/tree/main/bytecodes)
