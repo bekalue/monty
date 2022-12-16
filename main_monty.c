@@ -1,6 +1,7 @@
 #include "monty.h"
 
 static stack_t *stack;
+static char Data_Format;
 static int Line_Count;
 static int Current_Line;
 static char **Lines;
