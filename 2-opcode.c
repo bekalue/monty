@@ -21,7 +21,8 @@ void opcode_mod(stack_t **stack, unsigned int line_number)
 			if (top0->n == 0)
 			{
 				fprintf(stderr, "L%d: division by zero\n", line_number);
-				exit_program(EXIT_FAILURE);
+				clean_program();
+				exit(EXIT_FAILURE);
 			}
 			result = top1->n % top0->n;
 			pop(stack);
@@ -33,7 +34,8 @@ void opcode_mod(stack_t **stack, unsigned int line_number)
 	if (error)
 	{
 		fprintf(stderr, "L%d: can't mod, stack too short\n", line_number);
-		exit_program(EXIT_FAILURE);
+		clean_program();
+		exit(EXIT_FAILURE);
 	}
 }
 
@@ -56,13 +58,15 @@ void opcode_pchar(stack_t **stack, unsigned int line_number)
 		else
 		{
 			fprintf(stderr, "L%d: can't pchar, value out of range\n", line_number);
-			exit_program(EXIT_FAILURE);
+			clean_program();
+			exit(EXIT_FAILURE);
 		}
 	}
 	else
 	{
 		fprintf(stderr, "L%d: can't pchar, stack empty\n", line_number);
-		exit_program(EXIT_FAILURE);
+		clean_program();
+		exit(EXIT_FAILURE);
 	}
 }
 

@@ -13,6 +13,9 @@
 #ifndef FALSE
 #define FALSE 0
 #endif
+#ifndef BUFSIZE
+#define BUFSIZE 1024
+#endif
 
 /**
  * enum Date_Format_Modes - The data format modes for this program.
@@ -109,13 +112,13 @@ stack_t *get_bottom_element(stack_t **stack);
 /* Memory helpers - memory_stuff.c*/
 
 void *_realloc(void *ptr, unsigned int old_size, unsigned int new_size);
-void mem_set(char *str, int n, char c);
+void _memset(char *str, int n, char c);
 
 /* String utilities - string_stuff.c*/
 
 int str_len(const char *str);
 char *str_cat(char *left, char *right, char can_free);
-char **str_split(char *str, char c, int *len_out, char can_free);
+char **str_split(char *str, char c, int *len_out);
 
 /* Data validators - validator_functions.c*/
 

@@ -148,6 +148,7 @@ int main(int argc, char **argv)
 {
 	if (argc == 2)
 	{
+		Data_Format = DF_LIFO;
 		Lines = file_reader(argv[1], &Line_Count);
 		while (Current_Line < Lines_Count)
 		{

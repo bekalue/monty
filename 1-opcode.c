@@ -27,7 +27,7 @@ void opcode_add(stack_t **stack, unsigned int line_number)
 	if (error)
 	{
 		fprintf(stderr, "L%d: can't add, stack too short\n", line_number);
-		clear_program();
+		clean_program();
 		exit(EXIT_FAILURE);
 	}
 }
@@ -37,7 +37,7 @@ void opcode_add(stack_t **stack, unsigned int line_number)
  * @stack: The pointer to the stack of data
  * @line_number: The current line number
  */
-void opcode_nop(stack_t **stack, size_t line_number)
+void opcode_nop(stack_t **stack, unsigned int line_number)
 {
 	(void)line_number;
 	(void)stack;
@@ -49,7 +49,7 @@ void opcode_nop(stack_t **stack, size_t line_number)
  * @stack: The pointer to the stack of data
  * @line_number: The current line number
  */
-void opcode_sub(stack_t **stack, size_t line_number)
+void opcode_sub(stack_t **stack, unsigned int line_number)
 {
 	char error = TRUE;
 	stack_t *top0 = NULL, *top1 = NULL;
@@ -71,7 +71,7 @@ void opcode_sub(stack_t **stack, size_t line_number)
 	if (error)
 	{
 		fprintf(stderr, "L%d: can't sub, stack too short\n", line_number);
-		clear_program();
+		clean_program();
 		exit(EXIT_FAILURE);
 	}
 }
@@ -109,7 +109,7 @@ void opcode_div(stack_t **stack, unsigned int line_number)
 	if (error)
 	{
 		fprintf(stderr, "L%d: can't div, stack too short\n", line_number);
-		clear_program();
+		clean_program();
 		exit(EXIT_FAILURE);
 	}
 }
@@ -142,7 +142,7 @@ void opcode_mul(stack_t **stack, unsigned int line_number)
 	if (error)
 	{
 		fprintf(stderr, "L%d: can't mul, stack too short\n", line_number);
-		clear_program();
+		clean_program();
 		exit(EXIT_FAILURE);
 	}
 }

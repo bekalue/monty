@@ -5,7 +5,7 @@
  * @stack: The pointer to the stack of data
  * @line_number: The current line number
  */
-void opcode_push(stack_t **stack, size_t line_number)
+void opcode_push(stack_t **stack, unsigned int line_number)
 {
 	char *line = get_lines()[line_number - 1];
 	char *opname = NULL, *arg = NULL, data_mode = DF_LIFO;
@@ -33,7 +33,7 @@ void opcode_push(stack_t **stack, size_t line_number)
 		if (arg != NULL)
 			free(arg);
 		fprintf(stderr, "L%d: usage: push integer\n", line_number);
-		clear_program();
+		clean_program();
 		exit(EXIT_FAILURE);
 	}
 }
@@ -42,7 +42,7 @@ void opcode_push(stack_t **stack, size_t line_number)
  * @stack: The pointer to the stack of data
  * @line_number: The current line number
  */
-void opcode_pop(stack_t **stack, size_t line_number)
+void opcode_pop(stack_t **stack, unsigned int line_number)
 {
 	if ((stack != NULL) && (*stack != NULL))
 	{
@@ -51,7 +51,7 @@ void opcode_pop(stack_t **stack, size_t line_number)
 	else
 	{
 		fprintf(stderr, "L%d: can't pop an empty stack\n", line_number);
-		clear_program();
+		clean_program();
 		exit(EXIT_FAILURE);
 	}
 }
@@ -61,7 +61,7 @@ void opcode_pop(stack_t **stack, size_t line_number)
  * @stack: The pointer to the stack of data
  * @line_number: The current line number
  */
-void opcode_pall(stack_t **stack, size_t line_number)
+void opcode_pall(stack_t **stack, unsigned int line_number)
 {
 	stack_t *node = NULL;
 
@@ -82,7 +82,7 @@ void opcode_pall(stack_t **stack, size_t line_number)
  * @stack: The pointer to the stack of data
  * @line_number: The current line number
  */
-void opcode_pint(stack_t **stack, size_t line_number)
+void opcode_pint(stack_t **stack, unsigned int line_number)
 {
 	char error = TRUE;
 	stack_t *node = NULL;
@@ -99,7 +99,7 @@ void opcode_pint(stack_t **stack, size_t line_number)
 	if (error)
 	{
 		fprintf(stderr, "L%d: can't pint, stack empty\n", line_number);
-		clear_program();
+		clean_program();
 		exit(EXIT_FAILURE);
 	}
 }
@@ -108,7 +108,7 @@ void opcode_pint(stack_t **stack, size_t line_number)
  * @stack: The pointer to the stack of data
  * @line_number: The current line number
  */
-void opcode_swap(stack_t **stack, size_t line_number)
+void opcode_swap(stack_t **stack, unsigned int line_number)
 {
 	char error = TRUE;
 	stack_t *top0 = NULL, *top1 = NULL;
@@ -129,7 +129,7 @@ void opcode_swap(stack_t **stack, size_t line_number)
 	if (error)
 	{
 		fprintf(stderr, "L%d: can't swap, stack too short\n", line_number);
-		clear_program();
+		clean_program();
 		exit(EXIT_FAILURE);
 	}
 }

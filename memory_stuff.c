@@ -10,6 +10,7 @@
  */
 void *_realloc(void *prev, size_t old_size, size_t new_size)
 {
+	int i;
 	void *new = NULL;
 	int fill_size = old_size < new_size ? old_size : new_size;
 

@@ -6,7 +6,7 @@
  *
  * Return: the length of the string.
  */
-int str_len(char *str)
+int str_len(const char *str)
 {
 	int len = 0;
 
@@ -46,6 +46,7 @@ char **str_split(char *str, char c, int *len_out)
 	}
 	if (len_out != NULL)
 		*len_out = n;
+	return (sstr);
 }
 
 /**
@@ -59,7 +60,7 @@ char **str_split(char *str, char c, int *len_out)
 char *_strcat(char *left, char *right)
 {
 	int i;
-	char *str;
+	char *str = NULL;
 	int left_length = str_len(left);
 	int right_length = str_len(right);
 
@@ -74,6 +75,7 @@ char *_strcat(char *left, char *right)
 		str[i] = left[i];
 	for (i = 0; right && right[i] != '\0'; i++)
 		str[left_length + i] = right[i];
-	str[left_lenth + i] = '\0';
+	str[left_length + i] = '\0';
+
 	return (str);
 }
