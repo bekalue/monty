@@ -16,7 +16,6 @@ git clone https://github.com/bekalue/monty
 cd monty
 gcc -Wall -Werror -Wextra -pedantic -std=gnu89 *.c -o monty
 ```
-
 ## Usage
 
 `./monty <bytecode file>`
