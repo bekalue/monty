@@ -1,4 +1,4 @@
-# Brainf\*ck🧠
+# [Brainf\*ck](https://en.wikipedia.org/wiki/Brainfuck)🧠
 > To get started with brainf\*ck on ubuntu 20.04, we can install the interpreter `bf` using `sudo apt-get install bf`
 
 ## Usage
