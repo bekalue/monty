@@ -97,7 +97,7 @@ void opcode_queue(stack_t **stack, unsigned int line_number);
 char **file_reader(char *path, int *lines_count);
 char *read_command(char *str, int *offset);
 
-/* Executor of each line - interpreter.c */
+/* Executor of each line - byte_interpreter.c */
 
 instruction_t *get_opcode_handlers(void);
 void interpret(char *line, int line_num, stack_t **stack_values);
