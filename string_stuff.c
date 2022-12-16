@@ -16,7 +16,7 @@ int str_len(const char *str)
 }
 
 /**
- * str_cat - Concatenates two strings
+ * _strcat - Concatenates two strings
  * @left: The left string
  * @right: The right string
  * @can_free: Specifies which free-able parameters can be freed

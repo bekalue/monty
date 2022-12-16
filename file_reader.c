@@ -1,7 +1,7 @@
 #include "monty.h"
 
 /**
- * read_file - Reads the lines in a file froma file path
+ * file_reader - Reads the lines in a file froma file path
  * @path: The location of the file
  * @lines_count: A pointer to the lines in the file
  *
@@ -41,7 +41,7 @@ char **file_reader(char *path, int *lines_count)
 }
 
 /**
- * read_word - Reads a word from the given string
+ * read_command - Reads a word from the given string
  * @str: The string to read from
  * @offset: The offset into the string
  *

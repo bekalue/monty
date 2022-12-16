@@ -55,7 +55,7 @@ char **get_lines(void)
 }
 
 /**
- * clean_up_program - Frees dynamically allocated memory blocks
+ * clean_program - Frees dynamically allocated memory blocks
  */
 void clean_program(void)
 {
