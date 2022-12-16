@@ -18,7 +18,7 @@ char **file_reader(char *file_path, int *Line_Count)
 	char *buffer, *str = NULL;
 	bool stop_reading = FALSE;
 	struct stat file_status;
-	size_t read = 0, fd;
+	int rd = 0, fd;
 
 	buffer = malloc(sizeof(char) * BUFSIZE);
 	if (!buffer)
@@ -34,10 +34,10 @@ char **file_reader(char *file_path, int *Line_Count)
 		while (!stop_reading)
 		{
 			_memset(buffer, BUFSIZE - 1, '\0');
-			read = read(fd, (void *)buffer, BUFSIZE - 1);
-			if ((read <= 0) || (read < BUFSIZE - 1))
+			rd = read(fd, (void *)buffer, BUFSIZE - 1);
+			if ((rd <= 0) || (rd < BUFSIZE - 1))
 				stop_reading = TRUE;
-			buffer[read] = '\0';
+			buffer[rd] = '\0';
 			str = _strcat(str, buffer);
 		}
 		close(fd);
@@ -48,7 +48,7 @@ char **file_reader(char *file_path, int *Line_Count)
 	{
 		if (fd >= 0)
 			close(fd);
-		fprintf(stderr, "Error: Can't open file %s\n", path_name);
+		fprintf(stderr, "Error: Can't open file %s\n", file_path);
 		free(buffer);
 		clean_program();
 		exit(EXIT_FAILURE);
@@ -116,7 +116,7 @@ void clean_program(void)
 
 	if (Lines)
 	{
-		for (b = 0; b < Lines_Count; b++)
+		for (b = 0; b < Line_Count; b++)
 		{
 			if (Lines[b])
 				free(Lines[b]);
@@ -150,7 +150,7 @@ int main(int argc, char **argv)
 	{
 		Data_Format = DF_LIFO;
 		Lines = file_reader(argv[1], &Line_Count);
-		while (Current_Line < Lines_Count)
+		while (Current_Line < Line_Count)
 		{
 			interpret(Lines[Current_Line], Current_Line + 1, &stack);
 			Current_Line++;

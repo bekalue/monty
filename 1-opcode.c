@@ -97,7 +97,8 @@ void opcode_div(stack_t **stack, unsigned int line_number)
 			if (top0->n == 0)
 			{
 				fprintf(stderr, "L%d: division by zero\n", line_number);
-				exit_program(EXIT_FAILURE);
+				clean_program();
+				exit(EXIT_FAILURE);
 			}
 			result = top1->n / top0->n;
 			pop(stack);

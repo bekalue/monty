@@ -3,6 +3,7 @@
 #include <fcntl.h>
 #include <stdio.h>
 #include <stdlib.h>
+#include <stdbool.h>
 #include <string.h>
 #include <sys/stat.h>
 #include <unistd.h>
@@ -117,7 +118,7 @@ void _memset(char *str, int n, char c);
 /* String utilities - string_stuff.c*/
 
 int str_len(const char *str);
-char *str_cat(char *left, char *right, char can_free);
+char *_strcat(char *left, char *right);
 char **str_split(char *str, char c, int *len_out);
 
 /* Data validators - validator_functions.c*/

@@ -55,7 +55,8 @@ void interpret(char *line, int line_num, stack_t **stack)
 			}
 			fprintf(stderr, "L%d: unknown instruction %s\n", line_num, opcode);
 			free(opcode);
-			exit_program(EXIT_FAILURE);
+			clean_program();
+			exit(EXIT_FAILURE);
 		}
 		free(opcode);
 	}

@@ -8,7 +8,7 @@
  *
  * Return: a pointer to the new memory block, otherwise return NULL.
  */
-void *_realloc(void *prev, size_t old_size, size_t new_size)
+void *_realloc(void *prev, unsigned int old_size, unsigned int new_size)
 {
 	int i;
 	void *new = NULL;
@@ -16,7 +16,7 @@ void *_realloc(void *prev, size_t old_size, size_t new_size)
 
 	if (old_size == new_size)
 		return (prev);
-	if (ptr)
+	if (prev)
 	{
 		if (new_size == 0)
 		{
@@ -27,7 +27,7 @@ void *_realloc(void *prev, size_t old_size, size_t new_size)
 		if (new)
 		{
 			for (i = 0; i < fill_size; i++)
-				(char *)new[i] = (char *)prev[i];
+				*((char *)new + i) = *((char *)prev + i);
 			free(prev);
 			return (new);
 		}
