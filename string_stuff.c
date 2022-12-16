@@ -19,10 +19,10 @@ int str_len(char *str)
  * str_split - Splits a string into smaller strings at a given character.
  * @str: the string to split.
  * @c: the character at which split is to be performed.
- *
+ * @len_out: The pointer which would contain the number of smaller strings
  * Return: a pointer to array of strings.
  */
-char **str_split(char *str, char c)
+char **str_split(char *str, char c, int *len_out)
 {
 	char **sstr = NULL;
 	int i, o, j = 0, n = 0, s = 0;
@@ -44,6 +44,8 @@ char **str_split(char *str, char c)
 			n++;
 		}
 	}
+	if (len_out != NULL)
+		*len_out = n;
 }
 
 /**
