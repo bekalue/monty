@@ -31,4 +31,5 @@
    `$ gcc -Wall -Werror -Wextra -pedantic -std=c89 *.c -o monty`
    + Any output must be printed on stdout
    + Any error message must be printed on stderr
-      + Here is a link to a GitHub repository that could help you making sure your errors are printed on stderr
+      + [Here is a link to a GitHub repository](https://github.com/sickill/stderred) that could help you making sure your errors are printed on stderr
+## Tasks
