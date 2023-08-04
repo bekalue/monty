@@ -15,20 +15,17 @@ static char Data_Format;
  */
 int main(int argc, char *argv[])
 {
-	if (argc == 2)
-	{
-		Data_Format = DF_LIFO;
-		Lines = file_reader(argv[1], &Lines_Count);
-		while (Current_Line < Lines_Count)
-		{
-			interpret(Lines[Current_Line], Current_Line + 1, &Values);
-			Current_Line++;
-		}
-	}
-	else
+	if (argc != 2)
 	{
 		write(STDERR_FILENO, "USAGE: monty file\n", 18);
 		exit(EXIT_FAILURE);
+	}
+	Data_Format = DF_LIFO;
+	Lines = file_reader(argv[1], &Lines_Count);
+	while (Current_Line < Lines_Count)
+	{
+		interpret(Lines[Current_Line], Current_Line + 1, &Values);
+		Current_Line++;
 	}
 	clean_program();
 	return (EXIT_SUCCESS);
@@ -65,22 +62,13 @@ void clean_program(void)
 	if (Lines != NULL)
 	{
 		for (i = 0; i < Lines_Count; i++)
-		{
-			if (Lines[i] != NULL)
-				free(Lines[i]);
-		}
-		if (Lines != NULL)
-			free(Lines);
+			free(Lines[i]);
+		free(Lines);
 	}
-	if (node != NULL)
+	while (node != NULL)
 	{
-		while ((node != NULL) && (node->prev != NULL))
-			node = node->prev;
-		while (node != NULL)
-		{
-			tmp = node->next;
-			free(node);
-			node = tmp;
-		}
+		tmp = node->next;
+		free(node);
+		node = tmp;
 	}
 }

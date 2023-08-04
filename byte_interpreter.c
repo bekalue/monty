@@ -40,24 +40,21 @@ void interpret(char *line, int line_num, stack_t **stack)
 	int o = 0, i;
 	char *opcode = read_command(line, &o);
 
-	if (opcode)
+	if (opcode && opcode[0] != '#' && opcode[0] != '\0')
 	{
-		if (opcode[0] != '#' && opcode[0] != '\0')
+		for (i = 0; opcode_handlers[i].opcode; i++)
 		{
-			for (i = 0; opcode_handlers[i].opcode; i++)
+			if (strcmp(opcode, opcode_handlers[i].opcode) == 0)
 			{
-				if (strcmp(opcode, opcode_handlers[i].opcode) == 0)
-				{
-					free(opcode);
-					opcode_handlers[i].f(stack, line_num);
-					return;
-				}
+				free(opcode);
+				opcode_handlers[i].f(stack, line_num);
+				return;
 			}
-			fprintf(stderr, "L%d: unknown instruction %s\n", line_num, opcode);
-			free(opcode);
-			clean_program();
-			exit(EXIT_FAILURE);
 		}
+		fprintf(stderr, "L%d: unknown instruction %s\n", line_num, opcode);
 		free(opcode);
+		clean_program();
+		exit(EXIT_FAILURE);
 	}
+	free(opcode);
 }

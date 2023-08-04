@@ -13,9 +13,8 @@ char **file_reader(char *path, int *lines_count)
 	struct stat file_stat;
 	int fd = -1, n = 0;
 
-	stat(path, &file_stat);
 	fd = open(path, O_RDONLY);
-	if ((fd >= 0) && S_ISREG(file_stat.st_mode))
+	if (stat(path, &file_stat) == 0 && S_ISREG(file_stat.st_mode) && fd >= 0)
 	{
 		while (!stop)
 		{
@@ -52,10 +51,10 @@ char *read_command(char *str, int *offset)
 	int i = 0, a = -1, len;
 	char *word = NULL;
 
-	for (i = 0; (str != NULL) && (str[i + *offset] != '\0'); i++)
+	for (i = 0; str != NULL && str[i + *offset] != '\0'; i++)
 	{
-		a = !is_whitespace(str[i + *offset]) && (a == -1) ? i : a;
-		if ((a != -1) && is_whitespace(str[i + *offset]))
+		a = !is_whitespace(str[i + *offset]) && a == -1 ? i : a;
+		if (a != -1 && is_whitespace(str[i + *offset]))
 			break;
 	}
 	len = a > -1 ? i - a : 0;
